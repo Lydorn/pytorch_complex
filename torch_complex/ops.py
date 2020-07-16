@@ -9,6 +9,14 @@ def get_imag(t, complex_dim=-1):
     return t.select(complex_dim, 1)
 
 
+def add(t1, t2, complex_dim=-1):
+    assert t1.shape == t2.shape, f"t1 and t2 should have the same shape, not {t1.shape} and {t2.shape} respectively"
+    assert t1.shape[complex_dim] == t2.shape[complex_dim] == 2, \
+        "complex_dim of t1 and t2 should be of size 2, " \
+        "not {t1.shape[complex_dim} and {t2.shape[complex_dim} respectively."
+    return t1 + t2
+
+
 def mul(t1, t2, complex_dim=-1):
     t1_real = get_real(t1, complex_dim)
     t1_imag = get_imag(t1, complex_dim)
